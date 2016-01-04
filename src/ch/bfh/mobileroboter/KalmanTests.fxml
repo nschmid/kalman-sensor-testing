@@ -8,50 +8,90 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.Button?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.bfh.mobileroboter.KalmanTestsController">
-   <center>
-      <SplitPane dividerPositions="0.23076923076923078" orientation="VERTICAL" prefHeight="483.0" prefWidth="875.0" BorderPane.alignment="CENTER">
-        <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-               <children>
-                  <AnchorPane layoutX="285.0" layoutY="14.0">
-                     <children>
-                        <CheckBox fx:id="checkBox2" layoutY="29.0" mnemonicParsing="false" text="CheckBox" />
-                        <Label text="Sensor 2" />
-                        <Spinner fx:id="spinner2" layoutX="1.0" layoutY="56.0" />
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane layoutX="526.0" layoutY="13.0">
-                     <children>
-                        <CheckBox fx:id="checkBox3" layoutY="29.0" mnemonicParsing="false" text="CheckBox" />
-                        <Label text="Sensor 3" />
-                        <Spinner fx:id="spinner3" layoutX="1.0" layoutY="56.0" />
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane layoutX="36.0" layoutY="13.0">
-                     <children>
-                        <CheckBox fx:id="checkBox1" layoutY="29.0" mnemonicParsing="false" text="CheckBox" />
-                        <Label text="Sensor 1" />
-                        <Spinner fx:id="spinner1" layoutX="1.0" layoutY="56.0" />
-                     </children>
-                  </AnchorPane>
-                  <Button fx:id="btnUpdate" layoutX="777.0" layoutY="42.0" mnemonicParsing="false" onAction="#update" text="Update" />
-               </children>
-            </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-               <children>
-                  <LineChart fx:id="chart" layoutX="170.0" layoutY="-24.0" prefHeight="366.0" prefWidth="873.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                    <xAxis>
-                      <CategoryAxis side="BOTTOM" />
-                    </xAxis>
-                    <yAxis>
-                      <NumberAxis side="LEFT" />
-                    </yAxis>
-                  </LineChart>
-               </children>
-            </AnchorPane>
-        </items>
-      </SplitPane>
-   </center>
+<BorderPane minHeight="800.0" minWidth="1000.0"
+	xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="ch.bfh.mobileroboter.KalmanTestsController">
+	<center>
+		<VBox minHeight="800.0" minWidth="1000.0">
+			<children>
+				<HBox prefHeight="100.0" prefWidth="1000.0">
+					<children>
+						<VBox prefHeight="150.0" prefWidth="250">
+							<children>
+								<CheckBox fx:id="checkBox1" mnemonicParsing="false"
+									text="Sensor 1 active" />
+								<Spinner fx:id="spinner1" layoutX="1.0" layoutY="56.0" />
+							</children>
+						</VBox>
+						<VBox prefHeight="150.0" prefWidth="250">
+							<children>
+								<CheckBox fx:id="checkBox2" mnemonicParsing="false"
+									text="Sensor 2 active" />
+								<Spinner fx:id="spinner2" layoutX="1.0" layoutY="56.0" />
+							</children>
+						</VBox>
+						<VBox prefHeight="150.0" prefWidth="250">
+							<children>
+								<CheckBox fx:id="checkBox3" mnemonicParsing="false"
+									text="Sensor 3 active" />
+								<Spinner fx:id="spinner3" layoutX="1.0" layoutY="56.0" />
+							</children>
+						</VBox>
+						<VBox prefHeight="150.0" prefWidth="250">
+							<children>
+								<Label prefHeight="17.0" prefWidth="246.0" text="Anzahl Messungen"
+									textAlignment="CENTER" />
+								<Slider fx:id="numOfProbes" majorTickUnit="1" max="500"
+									value="15" />
+								<Label fx:id="lblNumOfProbes" prefHeight="17.0" prefWidth="246.0"
+									text="15" textAlignment="CENTER" />
+								<Separator prefWidth="200.0" />
+								<Button fx:id="btnUpdate" onAction="#update" text="Update" />
+							</children>
+						</VBox>
+					</children>
+				</HBox>
+				<TabPane prefWidth="1000.0" tabClosingPolicy="UNAVAILABLE">
+					<tabs>
+						<Tab text="one">
+							<content>
+								<AnchorPane minHeight="0.0" minWidth="0.0">
+									<children>
+										<LineChart fx:id="lineChart" prefHeight="400.0"
+											prefWidth="1000.0">
+											<xAxis>
+												<CategoryAxis side="BOTTOM" />
+											</xAxis>
+											<yAxis>
+												<NumberAxis side="LEFT" />
+											</yAxis>
+										</LineChart>
+									</children>
+								</AnchorPane>
+							</content>
+						</Tab>
+						<Tab text="two">
+							<content>
+								<AnchorPane minHeight="0.0" minWidth="0.0">
+									<children>
+										<ScatterChart fx:id="scatterChart" prefHeight="400.0"
+											prefWidth="1000.0">
+											<xAxis>
+												<CategoryAxis side="BOTTOM" />
+											</xAxis>
+											<yAxis>
+												<NumberAxis side="LEFT" />
+											</yAxis>
+										</ScatterChart>
+									</children>
+								</AnchorPane>
+							</content>
+						</Tab>
+					</tabs>
+				</TabPane>
+			</children>
+		</VBox>
+	</center>
 </BorderPane>
