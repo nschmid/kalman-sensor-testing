@@ -1,7 +1,10 @@
 package ch.bfh.mobileroboter;
 
 import javafx.fxml.FXML;
+import javafx.scene.chart.LineChart;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Spinner;
 import pk.com.habsoft.robosim.filters.kalman.KalmanFilterSimulator;
 
 public class KalmanTestsController {
@@ -31,6 +34,27 @@ public class KalmanTestsController {
 	private Spinner<Double> spnTotalTime = new Spinner<>();
 	
 	@FXML
+	private Spinner<Double> spinner1 = new Spinner<>();
+	
+	@FXML
+	private Spinner<Double> spinner2 = new Spinner<>();
+	
+	@FXML
+	private Spinner<Double> spinner3 = new Spinner<>();
+	
+	@FXML
+	private CheckBox checkBox1 = new CheckBox();
+	
+	@FXML
+	private CheckBox checkBox2 = new CheckBox();
+	
+	@FXML
+	private CheckBox checkBox3 = new CheckBox();
+	
+	@FXML
+	public LineChart chart = new LineChart(null, null);
+	
+	@FXML
 	private Spinner<Double> spnVariance = new Spinner<>();
 	
 	@FXML
@@ -38,12 +62,12 @@ public class KalmanTestsController {
 
 	KalmanFilterSimulator simulator = null;
 
-	private void update() {
-		DEFAULT_TOTAL_TIME = Integer.parseInt(spnTotalTime.getValue().toString());
-		DEFAULT_VARIANCE = Double.parseDouble(spnVariance.getValue().toString());
-		DEFAULT_CAR_SPEED = Double.parseDouble(spnRobotSpeed.getValue().toString());
-		update(DEFAULT_TOTAL_TIME, DEFAULT_VARIANCE, DEFAULT_CAR_SPEED);
-	}
+//	private void update() {
+//		DEFAULT_TOTAL_TIME = Integer.parseInt(spnTotalTime.getValue().toString());
+//		DEFAULT_VARIANCE = Double.parseDouble(spnVariance.getValue().toString());
+//		DEFAULT_CAR_SPEED = Double.parseDouble(spnRobotSpeed.getValue().toString());
+//		update(DEFAULT_TOTAL_TIME, DEFAULT_VARIANCE, DEFAULT_CAR_SPEED);
+//	}
 
 	public void update(int total_time, double variance, double carSpeed) {
 		simulator = new KalmanFilterSimulator(total_time, variance, carSpeed);
@@ -55,4 +79,16 @@ public class KalmanTestsController {
 
 //		pnlPositionError.setData(simulator.getPositionMeasurementError(), simulator.getPositionKalmanError());
 	}
+	
+	
+	@FXML
+	public void update(){
+		double variance = spinner1.getValue();
+		checkBox1.isSelected();
+		double carSpeed = 0;
+		simulator = new KalmanFilterSimulator(1, variance, carSpeed );
+		simulator.simulate();
+		
+	}
+	
 }
