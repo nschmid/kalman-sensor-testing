@@ -18,7 +18,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-import javafx.util.Duration;
 import pk.com.habsoft.robosim.filters.kalman.KalmanFilterSimulator;
 
 public class KalmanTestsController {
@@ -322,6 +321,21 @@ public class KalmanTestsController {
 		return arr;
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public Series createSeries(String seriesName, double[] arr, boolean positiveOnly) {
+		// defining a series
+		XYChart.Series<Number, Number> series = new XYChart.Series<Number, Number>();
+		series.setName(seriesName);
+		for (int i = 0; i < arr.length; i++) {
+			int c = i + 1;
+			if (positiveOnly)
+				series.getData().add(new XYChart.Data(c, Math.abs(arr[i])));
+			else
+				series.getData().add(new XYChart.Data(c, arr[i]));
+		}
+		return series;
+	}
+
 	@FXML
 	public void noise1PlusClicked() {
 		double d = Double.valueOf(noise1.getText());
@@ -557,24 +571,5 @@ public class KalmanTestsController {
 		rectangle.setFill(color);
 		rectangle.setStrokeWidth(3);
 		return rectangle;
-	}
-
-	public Series createSeries(String seriesName, double[] arr, boolean positiveOnly) {
-
-		// defining a series
-		XYChart.Series<Number, Number> series = new XYChart.Series<Number, Number>();
-		series.setName(seriesName);
-		for (int i = 0; i < arr.length; i++) {
-			int c = i + 1;
-			if (positiveOnly)
-				series.getData().add(new XYChart.Data(c, Math.abs(arr[i])));
-			else
-				series.getData().add(new XYChart.Data(c, arr[i]));
-		}
-
-		// Where <i> is the index of the series, <j> is the index of the data
-		// within the series, and <k> is the series’ color index
-
-		return series;
 	}
 }

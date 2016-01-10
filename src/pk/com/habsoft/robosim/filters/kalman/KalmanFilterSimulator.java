@@ -25,12 +25,12 @@ public class KalmanFilterSimulator {
 	double[] measurement_verror;
 	double[] kalman_veloc_error;
 
-	double[][] xx = { { 0 }, { 0 } };
-	double[][] pp = { { 1000.0, 0.0 }, { 0.0, 1000.0 } };
-	double[][] uu = { { 0.0 }, { 0.0 } };
-	double[][] ff = { { 1.0, 1.0 }, { 0.0, 1.0 } };
-	double[][] hh = { { 1.0, 0.0 } };
-	double[][] rr = { { 1.0 } };
+	double[][] xx = { { 0 }, { 0 } }; // initial location
+	double[][] pp = { { 1000.0, 0.0 }, { 0.0, 1000.0 } };// initial uncertainty
+	double[][] uu = { { 0.0 }, { 0.0 } };// external motion
+	double[][] ff = { { 1.0, 1.0 }, { 0.0, 1.0 } };// next state function
+	double[][] hh = { { 1.0, 0.0 } };// measurement function
+	double[][] rr = { { 1.0 } };// measurement uncertainty
 
 	double carSpeed = 0.5;
 
